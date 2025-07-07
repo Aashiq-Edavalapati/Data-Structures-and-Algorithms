@@ -1,0 +1,58 @@
+Question 1
+You're a designer of a virtual farming simulation. In this game, a farmer needs to plant and harvest crops in
+different plots of land. Each plot can grow only one type of crop at a time. The game generates random weather
+events that can affect the growth of crops. The player who harvests the most crops by the end of the season wins.
+Design an appropriate solution involving optimal data structure design and corresponding operations. 
+Calculate the time complexity and justify your choice of implementation and data structure with adequate 
+explanation.
+
+
+
+Question 2
+You are designing a city simulation game where players can build and manage their own city. Each player can 
+place buildings, manage resources, and handle citizens. The game generates random events like fires or floods 
+that players must respond to. The player who has the most prosperous city by the end of the game wins. Design a 
+solution involving optimal data structure design and corresponding operations. Calculate the time complexity and
+justify your choice of implementation and data structure with adequate explanation.
+ 
+ 
+ 
+Question 3
+In a maze exploration game, players are tasked with finding their way out of a randomly generated maze. Each 
+player starts at a different location and must find the exit. The maze contains various obstacles and treasures 
+that players can collect along the way. The player who finds the exit in the shortest time wins. Design an 
+appropriate solution involving optimal data structure design and corresponding operations. 
+Calculate the time complexity and justify your choice of implementation and data structure with adequate 
+explanation.
+ 
+ 
+ 
+ 
+Question 4
+You're developing a space exploration game where players pilot spaceships to explore different planets. Each 
+planet has its own set of challenges and resources. Players can gather resources, upgrade their ships, and 
+encounter random space events. The player who explores the most planets and gathers the most resources wins. 
+Design a solution involving optimal data structure design and corresponding operations. 
+Calculate the time complexity and justify your choice of implementation and data structure with adequate
+explanation.
+ 
+ 
+ 
+ 
+Question 5
+In a survival simulation game, players must gather resources, build shelters, and fend off wild animals. 
+The game generates random weather and animal encounters. The player who survives the longest wins. 
+Design an appropriate solution involving optimal data structure design and corresponding operations.
+Calculate the time complexity and justify your choice of implementation and data structure with adequate 
+explanation.
+ 
+ 
+ 
+ 
+Question 6
+You're designing a trading card game where players collect cards, build decks, and compete against each other. 
+Each card has unique attributes and abilities. The game generates random card packs for players to collect and 
+trade. The player who builds the most powerful deck and wins the most matches is the champion. 
+Design a solution involving optimal data structure design and corresponding operations. 
+Calculate the time complexity and justify your choice of implementation and data structure with adequate 
+explanation.

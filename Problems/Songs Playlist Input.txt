@@ -1,0 +1,57 @@
+TESTCASE 1:
+ADD song1
+ADD song2
+ADD song3
+ADD song4
+ADD song5
+ADD song6
+NEXT
+NEXT
+PREV
+UNDO
+REDO
+UNDO
+UNDO
+REDO
+
+TESTCASE 2:
+ADD song1
+ADD song2
+ADD song3
+ADD song4
+ADD song5
+ADD song6
+NEXT
+NEXT
+PREV
+UNDO
+ADD song7
+REDO
+UNDO
+ADD song8
+UNDO
+REDO
+
+TESTCASE 3:
+ADD song1
+ADD song2
+ADD song3
+ADD song4
+ADD song5
+ADD song6
+NEXT
+NEXT
+ADD song7
+PREV
+UNDO
+ADD song8
+REDO
+UNDO
+ADD song9
+UNDO
+UNDO
+REDO
+ADD song10
+REDO
+
+

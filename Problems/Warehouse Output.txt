@@ -1,0 +1,76 @@
+Test Case 1:
+Count of Mango: 10
+Printing all containers:
+Apple->Apple->Apple->Apple->Apple->Apple->Apple->Apple->Apple->Apple->End
+Mango->Mango->Mango->Mango->Mango->Mango->Mango->Mango->Mango->Mango->End
+Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->End
+Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->End
+Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->End
+Printing all containers:
+Apple->Apple->Apple->Apple->Apple->Apple->Apple->End
+Mango->Mango->Mango->Mango->Mango->Mango->Mango->Mango->End
+Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->End
+Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->End
+Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->End
+Containers arranged
+Printing all containers:
+Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->Orange->End
+Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->Banana->End
+Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->Cherries->End
+Mango->Mango->Mango->Mango->Mango->Mango->Mango->Mango->End
+Apple->Apple->Apple->Apple->Apple->Apple->Apple->End
+Count of Orange: 10
+Count of Banana: 10
+Count of Mango: 8
+Count of Cherries: 9
+Count of Apple: 7
+Test Case 2:
+Count of apple: 3
+Count of banana: 3
+Count of orange: 2
+Printing all containers:
+apple->apple->apple->End
+banana->banana->banana->End
+orange->orange->End
+grape->grape->grape->End
+Containers arranged
+Count of grape: 4
+Count of apple: 3
+Count of banana: 3
+Count of orange: 1
+Printing all containers:
+apple->apple->apple->End
+banana->banana->banana->End
+grape->grape->grape->grape->End
+orange->End
+Containers arranged
+Count of grape: 2
+Printing all containers:
+grape->grape->End
+End
+End
+End
+Containers arranged
+Test Case 3:
+Printing all containers:
+End
+End
+End
+End
+End
+Containers arranged
+Printing all containers:
+item1->item1->item1->item1->item1->End
+item2->item2->item2->item2->item2->End
+item3->item3->item3->item3->item3->End
+item4->item4->item4->item4->item4->End
+item5->item5->item5->item5->End
+item5->End
+Containers arranged
+Printing all containers:
+End
+End
+End
+End
+End
+End

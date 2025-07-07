@@ -1,0 +1,68 @@
+ADD apple
+ADD banana
+ADD apple
+ADD orange
+ADD banana
+ADD grape
+ADD apple
+ADD apple
+ADD orange
+ADD grape
+REMOVE apple
+ADD banana
+ADD grape
+COUNT apple
+COUNT banana
+COUNT orange
+PRINT
+ARRANGE
+ADD apple
+ADD orange
+ADD banana
+ADD grape
+ADD grape
+ADD banana
+REMOVE orange
+REMOVE banana
+REMOVE apple
+REMOVE grape
+REMOVE orange
+REMOVE banana
+COUNT grape
+COUNT apple
+COUNT banana
+COUNT orange
+PRINT
+ARRANGE
+ADD apple
+ADD banana
+ADD grape
+ADD orange
+ADD grape
+ADD banana
+ADD orange
+ADD apple
+REMOVE grape
+REMOVE banana
+REMOVE orange
+REMOVE apple
+REMOVE grape
+REMOVE orange
+REMOVE banana
+REMOVE apple
+REMOVE banana
+REMOVE apple
+REMOVE orange
+REMOVE grape
+REMOVE banana
+REMOVE apple
+REMOVE grape
+REMOVE orange
+REMOVE banana
+REMOVE apple
+COUNT apple
+COUNT orange
+COUNT grape
+COUNT banana
+PRINT
+ARRANGE

@@ -1,0 +1,13 @@
+12
+pu 6
+pu 4
+p
+pu 7
+t
+s
+i
+pu 5
+pu 8
+p
+t
+s
