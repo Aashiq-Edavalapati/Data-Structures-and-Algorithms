@@ -100,4 +100,4 @@ I’d love your help! Whether you're fixing typos, expanding pattern breakdowns,
 This isn’t just a repo. It’s a learning journey—one that helps you approach coding challenges with confidence, clarity, and curiosity. Dive in, dissect the patterns, and level up your problem-solving skills.
 
 Happy coding and pattern hunting!  
-— Aashiq
+— Aashiq Edavalapati
