@@ -94,6 +94,37 @@ This is the core of the playbook. If a problem contains any of these clues, your
 3. ### The "Discard Half" Test
     Ask yourself this question: "If I pick a random value from my search space, can I definitively **eliminate half** of the remaining possibilities?" If the answer is yes, it’s a Binary Search problem. This applies even in seemingly unsorted arrays, like in the "Find Peak Element" problem.
 
+4. ### The "Min of Max" / "Max of Min" Pattern
+
+Sometimes the problem is framed in terms of *minimizing the worst-case scenario* or *maximizing the best-case scenario*.
+These often boil down to a binary search on the answer where your check function tries to see if a certain **"threshold"** is possible.
+
+#### Typical wordings:
+
+"Minimize the maximum load..."
+
+"Minimize the largest distance..."
+
+"Maximize the minimum profit..."
+
+"Maximize the smallest gap..."
+
+#### Key insight:
+
+- You’re not directly searching for an element in an array. Instead, you’re searching for a numerical threshold that controls some process.
+
+- The monotonicity comes from the fact that if you can achieve a certain threshold k, you can usually achieve any threshold worse than that (and vice versa for the opposite case).
+
+- Write a can_solve(k) that returns True if you can achieve the required condition with k as your min/max threshold. Then binary search to find the optimal k.
+
+#### Example problems:
+
+- **Split Array Largest Sum (LeetCode 410)** — minimize the maximum subarray sum.
+
+- **Aggressive Cows** — maximize the minimum distance between cows.
+
+- **Painter's Partition Problem** — minimize the maximum time taken by a painter.
+
 -----
 
 ## 🎯 Solved Problems
