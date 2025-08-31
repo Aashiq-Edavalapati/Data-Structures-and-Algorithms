@@ -8,7 +8,8 @@
 #   order. The array contains distinct values.
 #
 # @pattern:
-#   Find Boundary in Monotonic Condition (Standard Binary Search Pattern)
+#   Sorted array + exact match or insertion boundary. 
+#   The predicate arr[i] ≥ m is monotonic (False … False, True … True), so binary search naturally finds either the target’s position or the correct insertion index.
 #
 # @method:
 #   Binary Search to Find Exact Position or Insertion Index

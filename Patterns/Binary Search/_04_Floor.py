@@ -12,11 +12,10 @@ from typing import List
 #
 # -----------------------------------------------------------------------------
 #
-# @pattern: Standard Binary Search
-#
-# -----------------------------------------------------------------------------
-#
-# @method: Binary Search for Boundary Condition
+# @pattern: 
+#   Sorted array + boundary query (“greatest element ≤ x”). 
+#   Define monotonic predicate P(i): arr[i] ≤ x → True … True, False … False. 
+#   Since it flips once and stays False, you can binary search for the last True (floor).
 #
 # =============================================================================
 

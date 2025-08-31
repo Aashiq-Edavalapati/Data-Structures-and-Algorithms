@@ -14,11 +14,10 @@ from _02_UpperBound import upperBound
 #
 # -----------------------------------------------------------------------------
 #
-# @pattern: Binary Search on Boundaries
-#
-# -----------------------------------------------------------------------------
-#
-# @method: Two-Pass Binary Search (One for First Occurrence, One for Last)
+# @pattern:
+#   Sorted array + boundary search. The problem asks for the first and last position of a target. 
+#   That’s a classic case where you define a monotonic predicate like arr[i] < x or arr[i] > x and 
+#   binary search the index space to locate the leftmost and rightmost boundary where the target holds.
 #
 # =============================================================================
 

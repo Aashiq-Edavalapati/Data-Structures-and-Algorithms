@@ -7,10 +7,9 @@
 #   `arr[ind] >= x`. If no such element exists, return -1.
 #
 # @pattern:
-#   Find Boundary in Monotonic Condition (Standard Binary Search Pattern)
-#
-# @method:
-#   Binary Search for First Element >= Target
+#   Sorted array + boundary query (“first index where arr[i] ≥ x”). 
+#   Define a monotonic predicate P(i): arr[i] ≥ x → False … False, True … True. 
+#   Since the predicate flips once and stays True, binary search the index space for the first True (lower bound).
 #
 # -----------------------------------------------------------------------------
 
@@ -58,13 +57,13 @@ def lower_bound(arr, x):
     ans = -1
 
     while left <= right:
-        mid = left + (right - left) // 2  # Avoids potential overflow in other languages
+        mid = left + (right - left) // 2
 
         if arr[mid] < x:
             # Target must be in the right half
             left = mid + 1
         else:
-            # arr[mid] >= x — mid is a potential answer
+            # (arr[mid] >= x) => mid is a potential answer
             ans = mid
             right = mid - 1  # Try to find a smaller index
 

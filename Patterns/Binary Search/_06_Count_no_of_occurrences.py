@@ -9,9 +9,11 @@ from _05_First_and_last_occurence import findFirstAndLastOccurrence
 #   Given a sorted array `arr` and a target value `x`, count the number of
 #   times `x` appears in `arr`.
 #
-# @pattern: Finding boundaries in a sorted array
-#
-# @method: Binary Search to find first and last occurrence
+# @pattern:
+#   Sorted array + duplicate handling. 
+#   The task is to count occurrences, which boils down to finding the first and last boundary indices of x. 
+#   Boundaries in a sorted search space follow a monotonic predicate (arr[mid] < x, arr[mid] > x), 
+#   so two binary searches efficiently locate the range.
 #
 # -----------------------------------------------------------------------------
 # Intuition:

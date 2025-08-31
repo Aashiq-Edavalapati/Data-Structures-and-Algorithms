@@ -24,7 +24,7 @@ Here’s a standard implementation in Python, your preferred language.
 ### Generic Code
 
 ```python
-# [Path in repo: ./Binary_Search/binary_search.py]
+# [Path in repo: ./implementation/binary_search.py]
 
 def binary_search(arr, target):
     """
@@ -36,7 +36,6 @@ def binary_search(arr, target):
 
     while left <= right:
         # Use left + (right - left) // 2 to prevent potential integer overflow
-        # in languages with fixed-size integers.
         mid = left + (right - left) // 2
 
         if arr[mid] == target:
@@ -72,7 +71,7 @@ Let's trace the algorithm with a simple example.
 
 To see it in action, you can explore and run the implementation file directly.
 
-**[🧑‍💻 Run the Python implementation\!](./implementation/00_binarySearch.py)**
+**[🧑‍💻 Run the Python implementation\!](./implementation/binarySearch.py)**
 
 -----
 

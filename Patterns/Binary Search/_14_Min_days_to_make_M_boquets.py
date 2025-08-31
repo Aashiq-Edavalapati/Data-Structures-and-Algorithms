@@ -15,7 +15,11 @@ from typing import List, Tuple
 #   If it is not possible, return -1.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Binary Search on Answer
+# @pattern: 
+#   We’re asked for the minimum number of days needed — a classic “minimize the maximum threshold” setup. 
+#   The feasibility check isPossible(days) is monotonic: 
+#       if you can make m bouquets in d days, then you can also make them in any d' > d. 
+#   This monotonic property → `Binary Search on Answer`.
 # -----------------------------------------------------------------------------
 #
 # @method:

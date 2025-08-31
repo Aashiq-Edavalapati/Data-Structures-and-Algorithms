@@ -7,7 +7,10 @@
 #   In other words, return ⌊sqrt(n)⌋.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Binary Search on Answer
+# @pattern: 
+#   We’re looking for the largest integer whose square ≤ n. 
+#   The predicate mid*mid ≤ n is monotonic (once it becomes false, it stays false for larger mids). 
+#   This makes it a classic Binary Search on Answer problem.
 # -----------------------------------------------------------------------------
 #
 # @method:

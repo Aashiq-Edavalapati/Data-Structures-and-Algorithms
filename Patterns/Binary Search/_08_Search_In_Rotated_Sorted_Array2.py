@@ -13,7 +13,12 @@ from typing import List
 #   some pivot unknown to you.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Modified Binary Search
+# @pattern: 
+#   Array is rotated but still piecewise sorted, and duplicates only obscure which half is sorted.
+#   The ability to still discard half the search space (except in worst-case all-duplicates) 
+#   makes it a Binary Search problem. When arr[left] == arr[mid] == arr[right], 
+#   shrink boundaries to restore the monotonic property.
+#
 # -----------------------------------------------------------------------------
 #
 # @method:

@@ -7,7 +7,11 @@
 #   If no such integer exists, return -1.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Binary Search on Answer
+# @pattern: 
+#   We’re searching for an integer x such that x^n = m. 
+#   The function f(x) = x^n is monotonic increasing for positive integers. 
+#   That means if mid^n < m, larger values may work; if mid^n > m, smaller values may work. 
+#   This monotonic property lets us binary search on the answer in the range [1, m].
 # -----------------------------------------------------------------------------
 #
 # @method:

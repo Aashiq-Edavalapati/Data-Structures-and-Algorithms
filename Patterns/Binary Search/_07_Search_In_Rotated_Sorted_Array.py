@@ -12,7 +12,10 @@ from typing import List
 #   at some pivot unknown to you.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Modified Binary Search
+# @pattern:
+#   Even though the array is rotated, at any index one half is always sorted. 
+#   By detecting which half is sorted and checking if the target lies in that range, 
+#   you can discard half of the search space each step → classic Binary Search reasoning.
 # -----------------------------------------------------------------------------
 #
 # @method:

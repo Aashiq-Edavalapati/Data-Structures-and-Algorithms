@@ -13,13 +13,43 @@ from typing import List
 #   `threshold`.
 #
 # ------------------------------------------------------------------------------
-#
 # @pattern: Min. Value that satisfies a given condition
+#   - We're not searching *inside* the array; we're searching over possible
+#     divisors (1 .. max(nums)).
+#   - Monotonicity: As `divisor` increases, each term ceil(num/divisor) is
+#     non-increasing, so the total sum is non-increasing. Once the sum becomes
+#     ≤ threshold, it stays ≤ for any larger divisor.  → Perfect for
+#     "Binary Search on Answer".
+#
+#   Search space: [1, max(nums)]
+#   Feasibility check: is_valid_divisor(nums, d, threshold) → True/False
+#
+#   Typical pitfalls this solves:
+#     * Off-by-one errors in the search space bounds
+#     * Using float division instead of integer math; we deliberately use
+#       math.ceil(num / d) to match the problem's definition
 #
 # ------------------------------------------------------------------------------
-#
 # @method: Binary Search on Answer
+#   1) Define the predicate:
+#        is_valid_divisor(nums, d, threshold) :=
+#            sum( ceil(num/d) for num in nums ) ≤ threshold
+#   2) Because this predicate is monotone in `d`, binary search the smallest `d`
+#      that returns True.
+#   3) Maintain the invariant:
+#        - All divisors in [left, right] are candidates.
+#        - When mid is valid, move `right` to mid-1 to find a smaller valid d.
+#        - When mid is invalid, move `left` to mid+1 to seek larger divisors.
 #
+#   Time Complexity:
+#     - Brute force:  O(max(nums) * len(nums))
+#     - Binary search: O(len(nums) * log(max(nums)))
+#   Space Complexity: O(1) extra space for both approaches.
+#
+#   Edge cases to keep in mind:
+#     - threshold < len(nums) → requires divisor > 1 (often much larger)
+#     - Very large values in nums
+#     - nums contains a single element
 # ===============================================================================
 
 def bruteForce(nums: List[int], threshold: int) -> int:
@@ -44,13 +74,18 @@ def bruteForce(nums: List[int], threshold: int) -> int:
     """
     max_val = max(nums)
     # Start checking divisors from 1 up to the maximum element in the array.
+    # Due to monotonicity, the first divisor that satisfies the constraint is optimal.
     for divisor in range(1, max_val + 2):
         current_sum = 0
+        # Compute sum of ceil divisions for this candidate divisor.
         for num in nums:
+            # Using math.ceil to honor the problem's rounding rule.
             current_sum += math.ceil(num / divisor)
         
+        # If we meet the threshold, we've found the minimal feasible divisor.
         if current_sum <= threshold:
             return divisor
+    # Given standard problem constraints, control should return earlier.
     return -1 # Should not be reached given problem constraints
 
 def is_valid_divisor(nums: List[int], divisor: int, threshold: int) -> bool:
@@ -72,9 +107,11 @@ def is_valid_divisor(nums: List[int], divisor: int, threshold: int) -> bool:
         return False
         
     div_sum = 0
+    # Accumulate ceil(num / divisor) for each element to test feasibility.
     for num in nums:
         div_sum += math.ceil(num / divisor)
     
+    # Valid if the sum does not exceed the threshold constraint.
     return div_sum <= threshold
 
 def smallestDivisor(nums: List[int], threshold: int) -> int:
@@ -99,8 +136,10 @@ def smallestDivisor(nums: List[int], threshold: int) -> int:
     # The smallest possible divisor is 1, and the largest is max(nums).
     # A divisor larger than max(nums) results in a sum of N, same as divisor=max(nums).
     left, right = 1, max(nums)
+    # We keep track of the best (smallest) feasible divisor seen so far.
     smallest_possible_divisor = right
 
+    # Standard lower-bound binary search template.
     while left <= right:
         # Calculate the middle of the current search range.
         mid_divisor = left + (right - left) // 2
@@ -115,6 +154,7 @@ def smallestDivisor(nums: List[int], threshold: int) -> int:
             # If the sum is too large, we need a larger divisor.
             left = mid_divisor + 1
             
+    # At loop end, `smallest_possible_divisor` holds the minimal feasible divisor.
     return smallest_possible_divisor
 
 if __name__ == '__main__':
@@ -142,7 +182,8 @@ if __name__ == '__main__':
         print(f"Brute Force Result: {brute_force_result}")
         print(f"Binary Search Result: {binary_search_result}")
         
-        # Verification
+        # Verification: Both methods should agree. If not, re-check predicate
+        # monotonicity or search bounds.
         if brute_force_result == binary_search_result:
             print("✅ Results match!")
         else:

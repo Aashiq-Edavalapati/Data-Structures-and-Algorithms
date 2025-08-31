@@ -10,7 +10,11 @@ from typing import List
 #   The array may contain multiple peaks — return the index of any one of them.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Binary Search in Unsorted Array
+# @pattern: 
+#   Even though the array is unsorted, the definition of a peak guarantees structure: 
+#       if arr[mid] lies on an ascending slope, a peak must exist on the right; if on a descending slope, 
+#           a peak must exist on the left. 
+#       This ability to always discard half the array makes it a Binary Search problem.
 # -----------------------------------------------------------------------------
 #
 # @method:

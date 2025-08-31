@@ -9,7 +9,12 @@ from typing import List
 #   element in the array.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Modified Binary Search
+# @pattern: 
+#   A rotated sorted array is still partially sorted, and 
+#   the minimum element is exactly the pivot point where order breaks. 
+#   At each step you can decide which half is sorted and safely discard it, 
+#   keeping only the half that might contain the pivot → classic Binary Search property.
+#
 # -----------------------------------------------------------------------------
 #
 # @method:

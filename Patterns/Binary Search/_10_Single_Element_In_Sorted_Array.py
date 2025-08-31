@@ -10,7 +10,11 @@ from typing import List
 #   Find and return that single element.
 #
 # -----------------------------------------------------------------------------
-# @pattern: Modified Binary Search
+# @pattern:
+#   The array is sorted with a strict pairing pattern (every element appears twice, except one). 
+#   This creates a monotonic property in index parity: before the single element, pairs start at even indices; 
+#   after it, pairs start at odd indices. 
+#   Detecting where this pattern breaks lets you discard half of the array each step → Binary Search applies.
 # -----------------------------------------------------------------------------
 #
 # @method:
