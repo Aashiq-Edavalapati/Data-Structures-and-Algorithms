@@ -24,20 +24,25 @@ from typing import List
 
 def countSubsetsWithSumK(arr: List[int], k: int) -> int:
     n = len(arr)
+    # Initialize the row array
     prevRow = [0 for _ in range(k + 1)]
-    prevRow[0] = 1
-    if k < arr[0]: prevRow[arr[0]] = 1
-    for idx in range(n):
+    # 1. Base Cases
+    prevRow[0] = 1 # target == 0
+    if arr[0] <= k: prevRow[arr[0]] = 1 # target == arr[0]
+
+    # 2. Start iterating from bottom to up
+    for idx in range(1, n): # idx == 0 is base case => Start from 1
+        # Temporary array to store current idx row in dp array in bottom up solution
         temp = [0 for _ in range(k + 1)]
-        temp[0] = 1
+        temp[0] = 1 # Base Case (target == 0)
         for target in range(1, k + 1):
             pick = 0
-            if target - arr[idx] >= 0:
+            if target - arr[idx] >= 0: # Index bound condition
                 pick = prevRow[target - arr[idx]]
             notPick = prevRow[target]
 
             temp[target] = pick + notPick
-        prevRow = temp
+        prevRow = temp # Update the previous row
     
     return prevRow[k]
 

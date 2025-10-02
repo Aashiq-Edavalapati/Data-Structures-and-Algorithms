@@ -24,17 +24,17 @@ from typing import List
 
 def countSubsetsWithSumK(arr: List[int], k: int) -> int:
     n = len(arr)
-    dp = [[-1 for _ in range(k + 1)] for _ in range(n)]
+    dp = [[-1 for _ in range(k + 1)] for _ in range(n)] # DP Array for memoization
     def helper(idx: int, target: int) -> int:
         if target == 0: return 1
         if idx == 0: return 1 if arr[0] == target else 0
         if target < 0: return 0
-        if dp[idx][target] != -1: return dp[idx][target]
+        if dp[idx][target] != -1: return dp[idx][target] # If answer already in dp array => return it
 
         pick = helper(idx - 1, target - arr[idx])
         notPick = helper(idx - 1, target)
 
-        dp[idx][target] = pick + notPick
+        dp[idx][target] = pick + notPick # Store answer in the dp array
         return dp[idx][target]
     
     return helper(n - 1, k)

@@ -24,13 +24,18 @@ from typing import List
 
 def countSubsetsWithSumK(arr: List[int], k: int) -> int:
     def helper(idx: int, target: int) -> int:
-        if target == 0: return 1
+        # Base Cases
+        if target == 0: return 1 # If target == 0 => An answer found => return 1
         if idx == 0: return 1 if arr[0] == target else 0
         if target < 0: return 0
-
+        
+        # Choice 1: Pick the current element => update target = target - arr[idx], move to next element
         pick = helper(idx - 1, target - arr[idx])
+
+        # Choice 2: Don't pick the current element => Move to next element
         notPick = helper(idx - 1, target)
 
+        # Return counts of both the choices
         return pick + notPick
     
     n = len(arr)

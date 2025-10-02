@@ -24,14 +24,20 @@ from typing import List
 
 def countSubsetsWithSumK(arr: List[int], k: int) -> int:
     n = len(arr)
-    dp = [[0 for _ in range(k + 1)] for _ in range(n)]
+    dp = [[0 for _ in range(k + 1)] for _ in range(n)] # Initialize dp array -> Changing parameters(idx, target)(0 to (n - 1), 0 to target) => Size = n x (target + 1)
+
+    # 1. Base Cases
     for row in dp:
-        row[0] = 1
-    if arr[0] <= k: dp[0][arr[0]] = 1
-    for idx in range(n):
-        for target in range(1, k + 1):
+        row[0] = 1 # target == 0
+    if arr[0] <= k: dp[0][arr[0]] = 1 # idx == 0 && target == arr[0]
+    # Since, index can't be negative target < 0 will be handled in the for loop
+
+    # 2. Start iterating from the bottom to up (From base case to the inital function call)
+    #       Replace the recursive calls with dp[][]
+    for idx in range(1, n): # Since, idx == 0 is base case start from 1
+        for target in range(1, k + 1): # Since target == 0 is base case start from 1
             pick = 0
-            if target - arr[idx] >= 0:
+            if target - arr[idx] >= 0: # Index bound check
                 pick = dp[idx - 1][target - arr[idx]]
             notPick = dp[idx - 1][target]
 
