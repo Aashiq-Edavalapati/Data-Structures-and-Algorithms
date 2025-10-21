@@ -1,6 +1,6 @@
 # Data Structures & Algorithms (DSA) — Pattern-Driven Mastery
 
-Welcome to my **Data Structures & Algorithms** repository! 🚀
+Welcome to my **Data Structures & Algorithms** repository!
 
 This repo is built for ambitious learners, interview aspirants, and curious minds who want to conquer algorithmic challenges—not by memorizing solutions, but by understanding patterns and strengthening intuition.
 
@@ -31,10 +31,6 @@ I've given below the repository structure to help you quickly navigate and under
 ├── Patterns/
 │   └── \[PatternType]/\[PatternName].md
 │       └── code examples + pattern breakdowns
-├── Problems/
-│   └── \[Category]/
-│       └── \[ProblemName].py
-│       └── solutions with step-by-step logic
 └── README.md
 
 ````
