@@ -67,33 +67,6 @@ def maxProfit(prices: List[int]) -> int:
 
     return helper(0, 0, True)
 
-
-def maxProfit2(prices: List[int]) -> int:
-    """
-        Method 2: After each buy or sell, increase the transactions count => 
-                        Even count => Buy, Odd Count => Sell
-    """
-    n = len(prices)
-    def helper(idx: int, transaction: int) -> int:
-        # Base Cases: All prices exhausted or 4 transactions => 2 bought and 2 sold
-        if idx == n or transaction == 4:
-            return 0
-
-        # If transaction count is even => Currently we have no holding stocks => Buy
-        if transaction % 2 == 0:
-            buy = -prices[idx] + helper(idx + 1, transaction + 1) 
-            notBuy = helper(idx + 1, transaction)
-            profit = max(buy, notBuy)
-        # Otherwise, we have 1 holding stock => Sell
-        else:
-            sell = prices[idx] + helper(idx + 1, transaction + 1)
-            notSell = helper(idx + 1, transaction)
-            profit = max(sell, notSell)
-
-        return profit
-    
-    return helper(0, 0)
-    
 if __name__ == '__main__':
     testCases = [
         [3,3,5,0,0,3,1,4],  # 6
@@ -102,4 +75,4 @@ if __name__ == '__main__':
     ]
 
     for i, prices in enumerate(testCases):
-        print(f"TestCase {i}: i/p: prices={prices}; o/p: {maxProfit2(prices)}")
+        print(f"TestCase {i}: i/p: prices={prices}; o/p: {maxProfit(prices)}")

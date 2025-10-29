@@ -40,49 +40,31 @@
 
 from typing import List
 
-
-def maxProfit(prices: List[int]) -> int:
-    n = len(prices)
-    dp = [[[0, 0] for _ in range(3)] for _ in range(n + 1)]
-
-    for idx in range(n - 1, -1, -1):
-        for sold in range(1, -1, -1):
-            for canBuy in range(1, -1, -1):
-                if canBuy:
-                    buy = -prices[idx] + dp[idx + 1][sold][0]
-                    notBuy = dp[idx + 1][sold][1]
-                    profit = max(buy, notBuy)
-                else:
-                    sell = prices[idx] + dp[idx + 1][sold + 1][1]
-                    notSell = dp[idx + 1][sold][0]
-                    profit = max(sell, notSell)
-                
-                # Store the result in DP table
-                dp[idx][sold][canBuy] = profit
-
-    return dp[0][0][1]
-
 def maxProfit2(prices: List[int]) -> int:
     """
         Method 2: After each buy or sell, increase the transactions count => 
                         Even count => Buy, Odd Count => Sell
     """
     n = len(prices)
-    dp = [[0 for _ in range(5)] for _ in range(n + 1)]
-    for idx in range(n - 1, -1, -1):
-        for transaction in range(3, -1, -1):
-            if transaction % 2 == 0:
-                buy = -prices[idx] + dp[idx + 1][transaction + 1]
-                notBuy = dp[idx + 1][transaction]
-                profit = max(buy, notBuy)
-            else:
-                sell = prices[idx] + dp[idx + 1][transaction + 1]
-                notSell = dp[idx + 1][transaction]
-                profit = max(sell, notSell)
+    dp = [[-1 for _ in range(4)] for _ in range(n)] # Initialize the DP table
+    def helper(idx: int, transaction: int) -> int:
+        if idx == n or transaction == 4:
+            return 0
+        if dp[idx][transaction] != -1: return dp[idx][transaction] # If the result was stored in DP table, return it
 
-            dp[idx][transaction] = profit
+        if transaction % 2 == 0:
+            buy = -prices[idx] + helper(idx + 1, transaction + 1) 
+            notBuy = helper(idx + 1, transaction)
+            profit = max(buy, notBuy)
+        else:
+            sell = prices[idx] + helper(idx + 1, transaction + 1)
+            notSell = helper(idx + 1, transaction)
+            profit = max(sell, notSell)
+
+        dp[idx][transaction] = profit # Store the result in the DP table
+        return profit
     
-    return dp[0][0]
+    return helper(0, 0)
 
 
 if __name__ == '__main__':

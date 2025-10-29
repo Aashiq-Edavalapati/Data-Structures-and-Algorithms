@@ -42,58 +42,25 @@ from typing import List
 
 
 def maxProfit(prices: List[int]) -> int:
-    """
-        prev => prev
-        dp[idx] => curr
-    """
     n = len(prices)
-    # Initialize prev row
-    prev = [[0, 0] for _ in range(3)]
+    dp = [[[0, 0] for _ in range(3)] for _ in range(n + 1)]
 
     for idx in range(n - 1, -1, -1):
-        # Curr Row
-        curr = [[0, 0] for _ in range(3)]
         for sold in range(1, -1, -1):
             for canBuy in range(1, -1, -1):
                 if canBuy:
-                    buy = -prices[idx] + prev[sold][0]
-                    notBuy = prev[sold][1]
+                    buy = -prices[idx] + dp[idx + 1][sold][0]
+                    notBuy = dp[idx + 1][sold][1]
                     profit = max(buy, notBuy)
                 else:
-                    sell = prices[idx] + prev[sold + 1][1]
-                    notSell = prev[sold][0]
+                    sell = prices[idx] + dp[idx + 1][sold + 1][1]
+                    notSell = dp[idx + 1][sold][0]
                     profit = max(sell, notSell)
                 
-                # Store res in curr row
-                curr[sold][canBuy] = profit
-        # Update curr row as prev for next row
-        prev = curr
+                # Store the result in DP table
+                dp[idx][sold][canBuy] = profit
 
-    return prev[0][1]
-
-def maxProfit2(prices: List[int]) -> int:
-    """
-        Method 2: After each buy or sell, increase the transactions count => 
-                        Even count => Buy, Odd Count => Sell
-    """
-    n = len(prices)
-    prev = [0] * 5
-    for idx in range(n - 1, -1, -1):
-        curr = [0] * 5
-        for transaction in range(3, -1, -1):
-            if transaction % 2 == 0:
-                buy = -prices[idx] + prev[transaction + 1]
-                notBuy = prev[transaction]
-                profit = max(buy, notBuy)
-            else:
-                sell = prices[idx] + prev[transaction + 1]
-                notSell = prev[transaction]
-                profit = max(sell, notSell)
-
-            curr[transaction] = profit
-        prev = curr
-
-    return prev[0]
+    return dp[0][0][1]
 
 if __name__ == '__main__':
     testCases = [
@@ -103,4 +70,4 @@ if __name__ == '__main__':
     ]
 
     for i, prices in enumerate(testCases):
-        print(f"TestCase {i}: i/p: prices={prices}; o/p: {maxProfit2(prices)}")
+        print(f"TestCase {i}: i/p: prices={prices}; o/p: {maxProfit(prices)}")
