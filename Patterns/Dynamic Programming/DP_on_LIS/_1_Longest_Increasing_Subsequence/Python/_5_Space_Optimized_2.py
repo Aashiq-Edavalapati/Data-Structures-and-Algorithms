@@ -31,7 +31,7 @@ from typing import List
 
 def lengthOfLIS(nums: List[int]) -> int:
     n = len(nums)
-    dp = [1 for _ in range(n + 1)]
+    dp = [1 for _ in range(n)]
     maxLen = 1
     for idx in range(n):
         for prev_idx in range(idx):
