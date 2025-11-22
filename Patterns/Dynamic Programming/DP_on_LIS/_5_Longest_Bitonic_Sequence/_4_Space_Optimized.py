@@ -19,6 +19,11 @@
 from typing import List
 
 def longestBitonicSequence(nums: List[int]) -> int:
+    """
+        In the bottom-up solution make the following replacements:    
+            - dp[idx + 1] => prevRow
+            - dp[idx] => curr
+    """
     n = len(nums)
     prevRow = [[0 for _ in range(2)] for _ in range(n + 1)]
     for idx in range(n - 1, -1, -1):

@@ -20,26 +20,31 @@ from typing import List
 
 def longestBitonicSequence(nums: List[int]) -> int:
     n = len(nums)
+    # Initialize the DP Table (Note the (n + 1) for the 2 higher dimensions, for handling base cases):
+    #    1. To handle idx = n
+    #    2. Since prev = -1 is not a valid index in array => We make a index shift by + 1 => Everywhere in the fn body, increase 2nd dim by +1
     dp = [[[0 for _ in range(2)] for _ in range(n + 1)] for _ in range(n + 1)]
+
+    # Start iterating over the changing parameter in the opposite direction to that of recursive solution
     for idx in range(n - 1, -1, -1):
-        for prev in range(idx - 1, -2, -1):
+        for prev in range(idx - 1, -2, -1): # Since prev cannot be >= to idx, we start from idx - 1
             for isIncreasing in range(2):
                 pick = 0
                 if prev == -1:
-                    pick = 1 + dp[idx + 1][idx + 1][1]
+                    pick = 1 + dp[idx + 1][idx + 1][1] # f(i, j, k) => dp[i][j + 1][k]
                 elif isIncreasing == 1:
                     if nums[idx] >= nums[prev]:
-                        pick = 1 + dp[idx + 1][idx + 1][1]
+                        pick = 1 + dp[idx + 1][idx + 1][1] # f(i, j, k) => dp[i][j + 1][k]
                     else:
-                        pick = 1 + dp[idx + 1][idx + 1][0]
+                        pick = 1 + dp[idx + 1][idx + 1][0] # f(i, j, k) => dp[i][j + 1][k]
                 elif nums[idx] <= nums[prev]:
-                    pick = 1 + dp[idx + 1][idx + 1][0]
+                    pick = 1 + dp[idx + 1][idx + 1][0] # f(i, j, k) => dp[i][j + 1][k]
 
-                notPick = dp[idx + 1][prev + 1][isIncreasing]
+                notPick = dp[idx + 1][prev + 1][isIncreasing] # f(i, j, k) => dp[i][j + 1][k]
 
-                dp[idx][prev + 1][isIncreasing] =  max(pick, notPick)
+                dp[idx][prev + 1][isIncreasing] =  max(pick, notPick) # f(i, j, k) => dp[i][j + 1][k]
 
-    return dp[0][0][1]
+    return dp[0][0][1] # f(i, j, k) => dp[i][j + 1][k]
 
 if __name__ == '__main__':
     testCases = [

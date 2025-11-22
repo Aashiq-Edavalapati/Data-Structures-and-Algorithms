@@ -20,9 +20,11 @@ from typing import List
 
 def longestBitonicSequence(nums: List[int]) -> int:
     n = len(nums)
+    # Initialize DP Table based on the changing parameters in the function (Since boolean cannot be a valid index, we represent binary in terms of integers(False -> 0, True -> 1))
     dp = [[[-1 for _ in range(2)] for _ in range(n)] for _ in range(n)]
     def helper(idx: int, prev: int, isIncreasing: int) -> int:
         if idx == n: return 0
+        # If the solution to current fn call is already stored in DP Table, return it
         if dp[idx][prev][isIncreasing] != -1: return dp[idx][prev][isIncreasing]
         pick = 0
         if prev == -1:
@@ -37,6 +39,7 @@ def longestBitonicSequence(nums: List[int]) -> int:
 
         notPick = helper(idx + 1, prev, isIncreasing)
 
+        # Store the result in the DP Table
         dp[idx][prev][isIncreasing] = max(pick, notPick)
         return dp[idx][prev][isIncreasing]
 
