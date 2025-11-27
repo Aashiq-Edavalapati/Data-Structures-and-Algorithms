@@ -30,7 +30,7 @@
             text1 and text2 consist of only lowercase English characters.
 """
 
-def lcs(str1: str, str2: str) -> int:
+def printLCS(str1: str, str2: str) -> int:
     n1, n2 = len(str1), len(str2)
     dp = [[0 for _ in range(n2 + 1)] for _ in range(n1 + 1)] # Initialize DP table
 
@@ -41,21 +41,33 @@ def lcs(str1: str, str2: str) -> int:
                 dp[idx1][idx2] = 1 + dp[idx1 - 1][idx2 - 1] # 1 + f(idx1 - 1, idx2 - 1) => 1 + dp[idx1 - 1][idx2 - 1]
             else:
                 dp[idx1][idx2] = max(dp[idx1 - 1][idx2], dp[idx1][idx2 - 1])
-    print(dp)
-    return dp[n1][n2]
+    lcs = [""] * dp[n1][n2]
+    pos = dp[n1][n2] - 1
+    i, j = n1, n2
+    while i > 0 and j > 0:
+        if str1[i - 1] == str2[j - 1]:
+            lcs[pos] = str1[i - 1]
+            pos -= 1
+            if pos == -1:
+                break
+            i -= 1
+            j -= 1
+        
+        elif dp[i - 1][j] > dp[i][j - 1]:
+            i -= 1
+        else:
+            j -= 1
+        
+    return "".join(lcs)
 
 if __name__ == '__main__':
     testCases = [
-        ("abcde", "ace"),   # 3 (ace)
-        ("abc", "abc"),     # 3 (abc)
+        ("abcde", "ace"),   # 3
+        ("abc", "abc"),     # 3
         ("abc", "def"),     # 0
-        ("oxcpqrsvwf", "shmtulqrypy"), # 2 ()
-        ("abac", "cab"),      # 2 (ab)
-        ("brute", "groot"),     # 2 (rt)
-        ("aaaaaaaa", "aaaaaaaa"),   # 8 (aaaaaaaa)
-        ("bbbaaaba", "bbababbb"),   # 
+        ("oxcpqrsvwf", "shmtulqrypy"), # 2
     ]
 
     for i, inp in enumerate(testCases):
         str1, str2 = inp
-        print(f'TestCase{i}: i/p: str1={str1}, str2={str2}; o/p: {lcs(str1, str2)}')
+        print(f'TestCase{i}: i/p: str1={str1}, str2={str2}; o/p: {printLCS(str1, str2)}')
