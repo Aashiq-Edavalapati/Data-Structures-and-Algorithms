@@ -35,7 +35,7 @@ from typing import List
         For each index, we try to check how far we can extend the subarray for the curr element to be min in that subarray.
         Once we find that we can say that all the possible subarrays in that subarray will have curr element as min value
 """
-def sumSubarrayMins(arr: List[int]) -> int:
+def sumSubarrayMins1(arr: List[int]) -> int:
     MOD = 10 ** 9 + 7
     n = len(arr)
     nse = findNSE(arr)
@@ -74,6 +74,30 @@ def findPSEE(arr):
         stk.append(i)
     
     return psee
+
+def sumSubarrayMins(arr: List[int]) -> int:
+    MOD = 10 ** 9 + 7
+    n = len(arr)
+    stk = []
+    ans = 0
+    arr.append(0) # Add 0 at the end to flush the stack instead of extra loop at the end
+    for i in range(n + 1):
+        while stk and arr[stk[-1]] >= arr[i]:
+            idx = stk.pop()
+            left = idx - (stk[-1] if stk else -1)
+            right = i - idx
+
+            ans = (ans + (arr[idx] * left * right) % MOD) % MOD
+        stk.append(i)
+    
+    # while stk:
+    #     idx = stk.pop()
+    #     left = idx - (stk[-1] if stk else -1)
+    #     right = n - idx
+
+    #     ans = (ans + (arr[idx] * left * right) % MOD) % MOD
+
+    return ans
 
 if __name__ == '__main__':
     testCases = [
