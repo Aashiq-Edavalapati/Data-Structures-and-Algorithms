@@ -35,14 +35,14 @@ def largestRectangleArea(heights: List[int]) -> int:
     for i in range(n):
         while stk and heights[stk[-1]] > heights[i]:
             idx = stk.pop()
-            w = i - idx
+            w = i - (stk[-1] if stk else -1) - 1
             maxArea = max(maxArea, w * heights[idx])
 
         stk.append(i)
 
     while stk:
         idx = stk.pop()
-        w = n - idx
+        w = n - (stk[-1] if stk else -1) - 1
         maxArea = max(maxArea, w * heights[idx])
 
     return maxArea
@@ -51,6 +51,7 @@ if __name__ == '__main__':
     testCases = [
         [2,1,5,6,2,3], # 10
         [2,4], # 4
+        [2,1,2], # 3
         [2,1,5,5,5,5,6,2,3], # 25
     ]
 
