@@ -34,8 +34,9 @@ def kDistChars(s: str, k: int) -> int:
     while r < n:
         char = s[r]
         chars[char] = chars.get(char, 0) + 1
-            
-        while len(chars) > k:
+        
+        # Note that we can eliminate the while loop because any way we have to move the right pointer atleast the same number or times we move left pointer if this is a while loop instead of if, so it doesn't really matter if we shrink the window and make it valid if it doesn't actually exceed the maxLen. It will eventually fix itself
+        if len(chars) > k:
             char = s[l]
             chars[char] -= 1
             l += 1
@@ -52,6 +53,9 @@ if __name__ == '__main__':
         ("aababbcaacc", 2), # 6
         ("abcddefg", 3), # 4
         ("abccab", 4), # 6
+        ("aabcbc", 2), # 4
+        ("aabccc", 2), # 5
+        ("abcbbbbcccbddd", 2), # 10
     ]
 
     for i, testCase in enumerate(testCases):
