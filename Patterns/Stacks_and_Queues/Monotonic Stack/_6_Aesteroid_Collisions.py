@@ -1,7 +1,7 @@
 # Link: https://leetcode.com/problems/asteroid-collision/
 
 """
-    @question:
+    @question(LC 735):
         We are given an array asteroids of integers representing asteroids in a row. The indices of the asteroid in the array represent their relative position in space.
 
         For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
