@@ -36,11 +36,8 @@
         Constraints:
             3 <= nums.length <= 105
             1 <= nums[i] <= 105
-
-        Note: Please do not copy the description during the contest to maintain the integrity of your submissions.
 """
 from typing import List
-
 
 def maximumSum(nums: List[int]) -> int:
     n = len(nums)
