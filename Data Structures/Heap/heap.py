@@ -96,7 +96,7 @@ class BinaryMinHeap:
             self.insert(element)
 
 
-    def bottomUpBuilding(self,eltList): # O(nlog(n))
+    def bottomUpBuilding(self,eltList): # O(n)
         """
             Bottom-up heap construction from an unordered list.
         """
