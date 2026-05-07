@@ -25,7 +25,9 @@ from IterativeTraversals import (
     preorderTraverseIterative,
     postorderTraverseIterative,
     postorderTraverseIterativeOneStack,
+    postorderTraversalIterativeModifiedPreorder,
     levelOrderTraverseIterative,
+    allTraversals,
     spiralTraversal,
 )
 
@@ -61,6 +63,8 @@ def print_traversal_results(tree):
     print("Pre-order:    ", preorderTraverseIterative(tree))
     print("Post-order 2S:", postorderTraverseIterative(tree))
     print("Post-order 1S:", postorderTraverseIterativeOneStack(tree))
+    print("Post-order (Modified Pre-Order):", postorderTraversalIterativeModifiedPreorder(tree))
+    print("All Traversals: ", allTraversals(tree))
     print("Level-order:  ", levelOrderTraverseIterative(tree))
     print("Spiral order: ", spiralTraversal(tree))
 

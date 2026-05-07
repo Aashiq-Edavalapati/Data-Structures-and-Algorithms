@@ -147,6 +147,44 @@ def postorderTraverseIterativeOneStack(tree):
     
     return traversal
 
+def postorderTraversalIterativeModifiedPreorder(tree):
+    """
+    Perform post-order traversal iteratively using modified iterative pre-order traversl
+    Alternative approach that tracks visited nodes.
+
+    Intuition:
+        Same as the 2 stacks idea!
+
+        Post-Order: L R Root
+        Pre-Order: Root L R
+        Modified Pre-Order: Root R L
+
+        Reverse(Modified Pre-Order) => Post-Order
+    
+    Args:
+        tree: A BinaryTree instance
+        
+    Returns:
+        List of elements in post-order sequence
+    """
+    if not tree.root or not tree.root.element:
+        return []
+
+    stack = [tree.root]
+    traversal = []
+    node = tree.root
+
+    while stack or node:
+        if node:
+            traversal.append(node.element)
+            node = node.rightchild
+            if node: stack.append(node)
+        else:
+            node = stack.pop()
+            node = node.leftchild
+            if node: stack.append(node)
+    
+    return traversal[::-1]
 
 def levelOrderTraverseIterative(tree):
     """
@@ -176,6 +214,42 @@ def levelOrderTraverseIterative(tree):
             queue.append(node.rightchild)
     
     return traversal
+
+def allTraversals(tree):
+    """
+    Finds Pre-Order, In-Order and Post-Order traversals in a single go using a single stack
+
+    Args:
+        tree: A BinaryTree instance
+
+    Returns:
+        List of 3 Lists: Pre, In and Post order traversals
+    """
+    if not tree.root or not tree.root.element:
+        return [[],[],[]]
+    
+    pre = []
+    ino = []
+    post = []
+    stack = [(tree.root, 1)]
+
+    while stack:
+        node, cnt = stack.pop()
+        if cnt == 1:
+            # 1st appearance => Pre Order
+            pre.append(node.element)
+            stack.append((node, 2))
+            if node.leftchild: stack.append((node.leftchild, 1))
+        elif cnt == 2:
+            # 2nd appearance => In Order
+            ino.append(node.element)
+            stack.append((node, 3))
+            if node.rightchild: stack.append((node.rightchild, 1))
+        else:
+            # 3rd appearance => Post Order
+            post.append(node.element)
+    
+    return [pre, ino, post]
 
 
 def spiralTraversal(tree):
