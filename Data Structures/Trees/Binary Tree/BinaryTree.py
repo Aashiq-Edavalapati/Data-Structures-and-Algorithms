@@ -585,6 +585,55 @@ class BinaryTree:
         swap(self.root)
 
 
+# LeetCode-style TreeNode class for compatibility
+class TreeNode:
+    """
+    A TreeNode class compatible with LeetCode-style binary tree problems.
+    Allows direct instantiation with a value and uses 'left'/'right' attributes.
+    """
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
+def build_tree_from_list(values):
+	"""
+	Build a TreeNode tree from a list of values (level-order traversal).
+	None or null values represent empty nodes.
+	
+	Args:
+		values: List of values in level-order (None for empty nodes)
+		
+	Returns:
+		Root TreeNode of the built tree, or None if list is empty
+	"""
+	if not values or values[0] is None:
+		return None
+	
+	root = TreeNode(values[0])
+	queue = [root]
+	i = 1
+	
+	while queue and i < len(values):
+		node = queue.pop(0)
+		
+		# Add left child
+		if i < len(values):
+			if values[i] is not None:
+				node.left = TreeNode(values[i])
+				queue.append(node.left)
+			i += 1
+		
+		# Add right child
+		if i < len(values):
+			if values[i] is not None:
+				node.right = TreeNode(values[i])
+				queue.append(node.right)
+			i += 1
+	
+	return root
+
     
 if __name__ == '__main__':
     tree = BinaryTree()
