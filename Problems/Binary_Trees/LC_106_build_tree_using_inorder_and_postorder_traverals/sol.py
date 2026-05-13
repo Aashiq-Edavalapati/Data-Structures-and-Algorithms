@@ -1,4 +1,4 @@
-# Link: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+# Link: https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/
 
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
@@ -25,23 +25,21 @@ TreeNode = _binary_tree_module.TreeNode
 build_tree_from_list = _binary_tree_module.build_tree_from_list
 
 
-def buildTree(preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-    if not preorder: return
-    inMap = {}
-    for i, val in enumerate(inorder):
-        inMap[val] = i
+def buildTree(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
     n = len(inorder)
+    inMap = {val: idx for idx, val in enumerate(inorder)}
 
-    return helper(preorder, inorder, inMap, 0, n - 1, 0, n - 1)
+    return helper(inorder, postorder, inMap, 0, n - 1, 0, n - 1)
 
-def helper(preorder: List[int], inorder: List[int], inMap, inStart: int, inEnd: int, preStart: int, preEnd: int) -> Optional[TreeNode]:
-    if inStart > inEnd or preStart > preEnd: return
-    node = TreeNode(preorder[preStart])
-    ind = inMap[node.val]
-    numsLeft = ind - inStart
+def helper(inorder: List[int], postorder: List[int], inMap, inStart: int, inEnd: int, postStart: int, postEnd: int) -> Optional[TreeNode]:
+    if inStart > inEnd or postStart > postEnd: return
 
-    node.left = helper(preorder, inorder, inMap, inStart, ind - 1, preStart + 1, preStart + numsLeft)
-    node.right = helper(preorder, inorder, inMap, ind + 1, inEnd, preStart + numsLeft + 1, preEnd)
+    node = TreeNode(postorder[postEnd])
+    idx = inMap[node.val]
+    numsLeft = idx - inStart
+
+    node.left = helper(inorder, postorder, inMap, inStart, idx - 1, postStart, postStart + numsLeft -1 )
+    node.right = helper(inorder, postorder, inMap, idx + 1, inEnd, postStart + numsLeft, postEnd - 1)
 
     return node
 
