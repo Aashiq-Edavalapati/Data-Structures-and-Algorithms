@@ -99,7 +99,9 @@ if __name__ == '__main__':
 
         op = searchBST(root, val)
         print(f"Testcase {i}:")
-        print(f"Input: root={tree}, val={val}")
+        print(f"Input: \n\troot:")
+        display_tree(tree)
+        print(f"\tval={val}")
         if op:
             print("Output subtree:")
             display_tree(op)
