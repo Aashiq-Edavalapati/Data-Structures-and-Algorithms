@@ -1,0 +1,71 @@
+# Link: https://leetcode.com/problems/find-eventual-safe-states/
+
+"""
+    @question:
+        There is a directed graph of n nodes with each node labeled from 0 to n - 1. The graph is represented by a 0-indexed 2D integer array graph where graph[i] is an integer array of nodes adjacent to node i, meaning there is an edge from node i to each node in graph[i].
+
+        A node is a terminal node if there are no outgoing edges. A node is a safe node if every possible path starting from that node leads to a terminal node (or another safe node).
+
+        Return an array containing all the safe nodes of the graph. The answer should be sorted in ascending order.
+
+    -----------------------------------------------------------------------------
+    -----------------------------------------------------------------------------
+
+        Example 1:
+            Input: graph = [[1,2],[2,3],[5],[0],[5],[],[]]
+            Output: [2,4,5,6]
+            Explanation: The given graph is shown above.
+                Nodes 5 and 6 are terminal nodes as there are no outgoing edges from either of them.
+                Every path starting at nodes 2, 4, 5, and 6 all lead to either node 5 or 6.
+
+        -----------------------------------------------------------------------------
+        
+        Example 2:
+            Input: graph = [[1,2,3,4],[1,2],[3,4],[0,4],[]]
+            Output: [4]
+            Explanation:
+                Only node 4 is a terminal node, and every path starting at node 4 leads to node 4.
+
+    -----------------------------------------------------------------------------
+    -----------------------------------------------------------------------------
+
+        Constraints:
+            n == graph.length
+            1 <= n <= 104
+            0 <= graph[i].length <= n
+            0 <= graph[i][j] <= n - 1
+            graph[i] is sorted in a strictly increasing order.
+            The graph may contain self-loops.
+            The number of edges in the graph will be in the range [1, 4 * 104].
+"""
+from typing import List
+
+def isSafeNode(node: int, graph: List[List[int]], isSafe: List[int]) -> bool:
+    if isSafe[node] != -1: return isSafe[node] == 1
+
+    isSafe[node] = 0
+    for neighbor in graph[node]:
+        if not isSafeNode(neighbor, graph, isSafe): return False
+
+    isSafe[node] = 1
+    return True
+
+def eventualSafeNodes(graph: List[List[int]]) -> List[int]:
+    n = len(graph)
+    isSafe = [-1] * n
+    safeNodes = []
+    for node in range(n):
+        if isSafeNode(node, graph, isSafe):
+            safeNodes.append(node)
+
+    return safeNodes
+
+if __name__ == '__main__':
+    testCases = [
+        [[],[0,2,3,4],[3],[4],[]],
+        [[1,2,3,4],[1,2],[3,4],[0,4],[]],
+        [[1,2],[2,3],[5],[0],[5],[],[]]
+    ]
+
+    for i, graph in enumerate(testCases):
+        print(f"TestCase {i}:- \n\ti/p: graph={graph};\n\to/p: {eventualSafeNodes(graph)}")
