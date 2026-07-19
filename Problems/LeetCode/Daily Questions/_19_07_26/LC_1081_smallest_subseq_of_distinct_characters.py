@@ -25,21 +25,31 @@
 """
 
 def smallestSubsequence(s: str) -> str:
+    # Store the last occurrence of every character
     lastPos = {}
     for i, char in enumerate(s):
         lastPos[char] = i
-    
-    seq = []
+
+    stack = []
     included = set()
+
     for i, char in enumerate(s):
-        if char not in included:
-            while seq and char < seq[-1] and lastPos[seq[-1]] > i:
-                included.remove(seq.pop())
+        # Skip duplicate characters
+        if char in included:
+            continue
 
-            seq.append(char)
-            included.add(char)
+        # Remove larger characters if they appear again later
+        while (
+            stack
+            and char < stack[-1]
+            and lastPos[stack[-1]] > i
+        ):
+            included.remove(stack.pop())
 
-    return ''.join(seq)
+        stack.append(char)
+        included.add(char)
+
+    return "".join(stack)
 
 if __name__ == '__main__':
     testCases = [
@@ -47,5 +57,5 @@ if __name__ == '__main__':
         "cbacdcbc", # acdb
     ]
 
-    for i, events in enumerate(testCases):
-        print(f"TestCase {i}:- i/p: events={events}; o/p: {maxTwoEvents(events)}")
+    for i, s in enumerate(testCases):
+        print(f"TestCase {i}:- i/p: s={s}; o/p: {smallestSubsequence(s)}")
