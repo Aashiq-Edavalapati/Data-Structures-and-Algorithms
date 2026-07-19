@@ -76,6 +76,8 @@ def maxTwoEvents(events: List[List[int]]) -> int:
             idx = nextValidEventIdx
 
     return maxValue
+
+
 if __name__ == '__main__':
     testCases = [
         [[1,3,2],[4,5,2],[2,4,3]], # 4
