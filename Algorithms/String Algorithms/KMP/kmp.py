@@ -94,10 +94,10 @@ if __name__ == '__main__':
 
     kmp = KMP()
 
-    for case_no, (text, pattern) in enumerate(test_cases, 1):
+    for i, (text, pattern) in enumerate(test_cases, 1):
         result = kmp.search(pattern, text)
 
-        print(f"Test Case {case_no}:")
+        print(f"Test Case {i}:")
         print(f"  Text    = {text}")
         print(f"  Pattern = {pattern}")
         print(f"  Output  = {result}")
